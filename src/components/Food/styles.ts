@@ -1,10 +1,8 @@
 import styled, { css } from "styled-components";
 
-interface ContainerComponent {
-  available: boolean;
-}
+import { FoodContainerComponent } from "../../common/types";
 
-export const Container = styled.div<ContainerComponent>`
+export const Container = styled.div<FoodContainerComponent>`
   background: #f0f0f5;
   border-radius: 8px;
 

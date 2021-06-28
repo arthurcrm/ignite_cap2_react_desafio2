@@ -1,32 +1,17 @@
 import { useState } from "react";
 import { FiEdit3, FiTrash } from "react-icons/fi";
 
+import { api } from "../../services/api";
+
+import { FoodProps } from "../../common/types";
+
 import { Container } from "./styles";
-import api from "../../services/api";
 
-export interface FoodProps {
-  food: {
-    id: number;
-    name: string;
-    price: number;
-    description: string;
-    image: string;
-    available: boolean;
-  };
-
-  isAvailable: boolean;
-  setIsAvailable: (isAvailable: boolean) => void;
-  handleEditFood: (food: {}) => void;
-  handleDelete: (id: number) => void;
-}
-
-export const Food = (props: FoodProps) => {
-  const { available } = props.food;
+export const Food = ({ food, handleEditFood, handleDelete }: FoodProps) => {
+  const { available } = food;
   const [isAvailable, setIsAvailable] = useState(available);
 
   const toggleAvailable = async () => {
-    const { food } = props;
-
     await api.put(`/foods/${food.id}`, {
       ...food,
       available: !isAvailable,
@@ -36,12 +21,8 @@ export const Food = (props: FoodProps) => {
   };
 
   const setEditingFood = () => {
-    const { food, handleEditFood } = props;
-
     handleEditFood(food);
   };
-
-  const { food, handleDelete } = props;
 
   return (
     <Container available={isAvailable}>
