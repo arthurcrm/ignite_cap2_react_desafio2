@@ -5,9 +5,9 @@ import { Form } from "./styles";
 import { Modal } from "../Modal";
 import { Input } from "../Input";
 
-interface ModalAddFoodProps {
+export interface ModalAddFoodProps {
   setIsOpen: () => void;
-  handleAddFood: (data: {}) => void;
+  handleAddFood: (data: {}) => Promise<void>;
   isOpen: boolean;
 }
 
